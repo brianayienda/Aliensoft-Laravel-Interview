@@ -19,12 +19,12 @@ In addition to standard CRUD endpoints, the API includes a custom `publish` acti
 
 ### Models and database
 
-- [Event.php](/C:/Users/USER/Desktop/Potential-Clients/Aliensoft-Laravel-Interview/app/Models/Event.php) is a minimal supporting model because `ticket_tiers.event_id` must reference an existing event.
-- [TicketTier.php](/C:/Users/USER/Desktop/Potential-Clients/Aliensoft-Laravel-Interview/app/Models/TicketTier.php) contains:
+- [Event.php](app/Models/Event.php) is a minimal supporting model because `ticket_tiers.event_id` must reference an existing event.
+- [TicketTier.php](app/Models/TicketTier.php) contains:
   - fillable fields
   - casts for price, booleans, quantity, and `sales_channels`
   - query scopes: `forEvent`, `active`, and `availableOnChannel`
-- The main migrations are in [database/migrations](/C:/Users/USER/Desktop/Potential-Clients/Aliensoft-Laravel-Interview/database/migrations):
+- The main migrations are in [database/migrations](database/migrations):
   - `create_events_table`
   - `create_permission_tables`
   - `create_ticket_tiers_table`
@@ -33,8 +33,8 @@ In addition to standard CRUD endpoints, the API includes a custom `publish` acti
 
 The request payloads are handled by:
 
-- [CreateTicketTierData.php](/C:/Users/USER/Desktop/Potential-Clients/Aliensoft-Laravel-Interview/app/Data/TicketTiers/CreateTicketTierData.php)
-- [UpdateTicketTierData.php](/C:/Users/USER/Desktop/Potential-Clients/Aliensoft-Laravel-Interview/app/Data/TicketTiers/UpdateTicketTierData.php)
+- [CreateTicketTierData.php](app/Data/TicketTiers/CreateTicketTierData.php)
+- [UpdateTicketTierData.php](app/Data/TicketTiers/UpdateTicketTierData.php)
 
 These classes are responsible for:
 
@@ -52,7 +52,7 @@ Important validation behavior:
 
 ### Action classes
 
-All write logic lives in dedicated actions under [app/Actions/TicketTiers](/C:/Users/USER/Desktop/Potential-Clients/Aliensoft-Laravel-Interview/app/Actions/TicketTiers):
+All write logic lives in dedicated actions under [app/Actions/TicketTiers](app/Actions/TicketTiers):
 
 - `CreateTicketTierAction`
 - `UpdateTicketTierAction`
@@ -63,7 +63,7 @@ Each action has exactly one public `execute(...)` method, which keeps controller
 
 ### Controller
 
-[TicketTierController.php](/C:/Users/USER/Desktop/Potential-Clients/Aliensoft-Laravel-Interview/app/Http/Controllers/Api/TicketTierController.php) coordinates the feature.
+[TicketTierController.php](app/Http/Controllers/Api/TicketTierController.php) coordinates the feature.
 
 Controller responsibilities:
 
@@ -86,8 +86,8 @@ The `index` method uses Spatie Query Builder for:
 
 Two resources shape API responses:
 
-- [TicketTierResource.php](/C:/Users/USER/Desktop/Potential-Clients/Aliensoft-Laravel-Interview/app/Http/Resources/TicketTierResource.php)
-- [ApiMessageResource.php](/C:/Users/USER/Desktop/Potential-Clients/Aliensoft-Laravel-Interview/app/Http/Resources/ApiMessageResource.php)
+- [TicketTierResource.php](app/Http/Resources/TicketTierResource.php)
+- [ApiMessageResource.php](app/Http/Resources/ApiMessageResource.php)
 
 `TicketTierResource` always exposes `id`, then uses `whenHas` for other attributes and `whenLoaded` for the related event. `ApiMessageResource` wraps every mutating response in a common envelope:
 
@@ -102,9 +102,9 @@ Two resources shape API responses:
 
 ### Authorization
 
-- [TicketTierPolicy.php](/C:/Users/USER/Desktop/Potential-Clients/Aliensoft-Laravel-Interview/app/Policies/TicketTierPolicy.php) checks permissions using `hasPermissionTo(...)`
-- [AuthServiceProvider.php](/C:/Users/USER/Desktop/Potential-Clients/Aliensoft-Laravel-Interview/app/Providers/AuthServiceProvider.php) registers the policy
-- API routes in [routes/api.php](/C:/Users/USER/Desktop/Potential-Clients/Aliensoft-Laravel-Interview/routes/api.php) are protected with `auth:sanctum`
+- [TicketTierPolicy.php](app/Policies/TicketTierPolicy.php) checks permissions using `hasPermissionTo(...)`
+- [AuthServiceProvider.php](app/Providers/AuthServiceProvider.php) registers the policy
+- API routes in [routes/api.php](routes/api.php) are protected with `auth:sanctum`
 
 Permission names assumed by this implementation:
 
@@ -141,7 +141,7 @@ The same pattern is used for `update`, `destroy`, and `publish`.
 
 ## Tests
 
-Feature coverage lives in [TicketTierApiTest.php](/C:/Users/USER/Desktop/Potential-Clients/Aliensoft-Laravel-Interview/tests/Feature/TicketTierApiTest.php).
+Feature coverage lives in [TicketTierApiTest.php](tests/Feature/TicketTierApiTest.php).
 
 The tests verify:
 
@@ -154,7 +154,7 @@ The tests verify:
 The test suite uses:
 
 - Pest
-- in-memory SQLite from [phpunit.xml](/C:/Users/USER/Desktop/Potential-Clients/Aliensoft-Laravel-Interview/phpunit.xml)
+- in-memory SQLite from [phpunit.xml](phpunit.xml)
 - `Sanctum::actingAs(...)` for authenticated API requests
 - Spatie permission bootstrapping in `beforeEach(...)`
 
@@ -171,6 +171,11 @@ The test suite uses:
    `composer install`
 2. Run the test suite:
    `php artisan test`
+
+## Supporting Files
+
+- Postman collection: [postman_collection.json](postman_collection.json)
+- Localization strings: [lang/en/ticket-tiers.php](lang/en/ticket-tiers.php)
 
 ## Notes
 
