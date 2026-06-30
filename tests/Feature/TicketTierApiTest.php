@@ -3,6 +3,7 @@
 use App\Models\Event;
 use App\Models\TicketTier;
 use App\Models\User;
+use Laravel\Sanctum\Sanctum;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\PermissionRegistrar;
 
@@ -28,7 +29,7 @@ beforeEach(function (): void {
         'ticket-tiers.delete',
     ]);
 
-    $this->actingAs($this->user);
+    Sanctum::actingAs($this->user);
 });
 
 it('stores a ticket tier', function (): void {
