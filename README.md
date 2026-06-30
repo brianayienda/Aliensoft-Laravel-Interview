@@ -172,11 +172,6 @@ The test suite uses:
 2. Run the test suite:
    `php artisan test`
 
-## Supporting Files
-
-- Postman collection: [postman_collection.json](/C:/Users/USER/Desktop/Potential-Clients/Aliensoft-Laravel-Interview/postman_collection.json)
-- Localization strings: [lang/en/ticket-tiers.php](/C:/Users/USER/Desktop/Potential-Clients/Aliensoft-Laravel-Interview/lang/en/ticket-tiers.php)
-
 ## Notes
 
 - All user-facing success and custom validation strings are wrapped in `__()`
