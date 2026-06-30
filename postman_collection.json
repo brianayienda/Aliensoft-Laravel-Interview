@@ -1,0 +1,163 @@
+{
+  "info": {
+    "name": "Ticket Tier API",
+    "_postman_id": "bfe4743a-8736-4b28-9f47-70af1d03110b",
+    "description": "Postman collection for the ticket tier assessment API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "List Ticket Tiers",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/ticket-tiers?filter[event_id]=1&filter[channel]=web&sort=-created_at&include=event&per_page=15",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "ticket-tiers"
+          ],
+          "query": [
+            {
+              "key": "filter[event_id]",
+              "value": "1"
+            },
+            {
+              "key": "filter[channel]",
+              "value": "web"
+            },
+            {
+              "key": "sort",
+              "value": "-created_at"
+            },
+            {
+              "key": "include",
+              "value": "event"
+            },
+            {
+              "key": "per_page",
+              "value": "15"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create Ticket Tier",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"event_id\": 1,\n  \"name\": \"VIP\",\n  \"price\": 99.99,\n  \"quantity\": 150,\n  \"sales_channels\": [\"web\", \"box_office\"],\n  \"is_active\": true\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/ticket-tiers",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "ticket-tiers"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Show Ticket Tier",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/ticket-tiers/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "ticket-tiers",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update Ticket Tier",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"VIP Plus\",\n  \"price\": 120,\n  \"sales_channels\": [\"web\"]\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/ticket-tiers/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "ticket-tiers",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Publish Ticket Tier",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/ticket-tiers/1/publish",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "ticket-tiers",
+            "1",
+            "publish"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete Ticket Tier",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/ticket-tiers/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "ticket-tiers",
+            "1"
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost"
+    }
+  ]
+}
